@@ -1,9 +1,12 @@
 package com.Product_management_appli.ProductManagementAppli.DAOorRepository;
 
+import com.Product_management_appli.ProductManagementAppli.dtos.CarRequestDTO;
 import com.Product_management_appli.ProductManagementAppli.entity.Car;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class CarDAO {
@@ -19,8 +22,8 @@ public class CarDAO {
             rs.getDouble("price"),
             rs.getInt("stock_quantity")
     );
-    public Car findAllCar(){
-        return jdbcTemplate.queryForObject("SELECT * FROM car", carRowMapper);
+    public List<Car> findAllCar(){
+        return jdbcTemplate.query("SELECT * FROM car", carRowMapper);
     }
 
     public Car findCarById(long id){

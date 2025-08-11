@@ -1,8 +1,13 @@
 package com.Product_management_appli.ProductManagementAppli.Controller;
 
 import com.Product_management_appli.ProductManagementAppli.DAOorRepository.CarDAO;
+import com.Product_management_appli.ProductManagementAppli.dtos.CarRequestDTO;
 import com.Product_management_appli.ProductManagementAppli.entity.Car;
+import com.Product_management_appli.ProductManagementAppli.mappers.CarMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/car")
@@ -13,10 +18,16 @@ public class CarController {
     }
 
     @GetMapping
-    public Car findAllCar(){
-        return carDAO.findAllCar();
+    public ResponseEntity<List<CarRequestDTO>> findAllCar(){
+        List<Car> cars = carDAO.findAllCar(); // ici ça renvoie List<Car>
+
+        List<CarRequestDTO> carDTOs = cars.stream()
+                .map(CarMapper::CarToCarDto) // mappe chaque Car en CarRequestDTO
+                .toList();
+        return ResponseEntity.ok(carDTOs);
     }
-    @GetMapping("{id}")
+
+    @GetMapping("/{id}")
     public Car findCarById(long id){
         return carDAO.findCarById(id);
     }
