@@ -2,9 +2,22 @@ CREATE TABLE IF NOT EXISTS car(
    id BIGINT PRIMARY KEY AUTO_INCREMENT,
     brand VARCHAR(255) NOT NULL,
     model VARCHAR(255) NOT NULL,
-    price DOUBLE NOT NULL,
-    stock_quantity INT NOT NULL
+    price DOUBLE,
+    stock_quantity INT
 );
+
+CREATE TABLE IF NOT EXISTS product(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    car_id BIGINT NULL,
+    name VARCHAR(255) NOT NULL,
+    price DOUBLE NOT NULL,
+    stock_quantity INT NOT NULL,
+    type ENUM('CAR', 'PART') NOT NULL,
+    FOREIGN KEY (car_id) REFERENCES car(id) ON DELETE CASCADE
+
+);
+
+
 
 CREATE TABLE IF NOT EXISTS customers(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -17,12 +30,6 @@ CREATE TABLE IF NOT EXISTS orders(
     order_date DATE NOT NULL,
      customer_id BIGINT NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customers(id)  ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS product(
-id BIGINT PRIMARY KEY AUTO_INCREMENT,
- car_id BIGINT NOT NULL,
-FOREIGN KEY (car_id) REFERENCES car(id) ON DELETE CASCADE
 );
 
 
