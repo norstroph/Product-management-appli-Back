@@ -23,23 +23,35 @@ public class CarDAO {
         return jdbcTemplate.queryForObject("SELECT * FROM car", carRowMapper);
     }
 
-    public Car getCarById(long id){
+    public Car findCarById(long id){
         return jdbcTemplate.queryForObject("SELECT * FROM car WHERE id = ?", carRowMapper, id);
     }
-    public Car getCarByBrandAndModel(String brand, String model){
+    public Car findCarByBrandAndModel(String brand, String model){
         return jdbcTemplate.queryForObject("SELECT * FROM car WHERE brand = ? AND model = ?", carRowMapper, brand, model);
     }
-    public Car getCarByModel(String model){
+    public Car findCarByModel(String model){
         return jdbcTemplate.queryForObject("SELECT * FROM car WHERE model = ?", carRowMapper, model);
     }
-    public Car getCarByBrand(String brand){
+    public Car findCarByBrand(String brand){
         return jdbcTemplate.queryForObject("SELECT * FROM car WHERE brand = ?", carRowMapper, brand);
     }
-    public Car getCarByPrice(double price){
+    public Car findCarByPrice(double price){
         return jdbcTemplate.queryForObject("SELECT * FROM car WHERE price = ?", carRowMapper, price);
     }
-    public Car getCarByStockQuantity(int stock_quantity){
+    public Car findCarByStockQuantity(int stock_quantity){
         return jdbcTemplate.queryForObject("SELECT * FROM car WHERE stock_quantity = ?", carRowMapper, stock_quantity);
     }
+    public Car saveCar(Car car){
+        jdbcTemplate.update("INSERT INTO car (brand, model, price, stock_quantity) VALUES (?, ?, ?, ?)", car.getBrand(), car.getModel(), car.getPrice(), car.getStock_quantity());
+        return car;
+    }
+    public Car updateCar(Car car){
+        jdbcTemplate.update("UPDATE car SET brand = ?, model = ?, price = ?, stock_quantity = ? WHERE id = ?", car.getBrand(), car.getModel(), car.getPrice(), car.getStock_quantity(), car.getId());
+        return car;
+    }
+    public void deleteCarById(long id){
+        jdbcTemplate.update("DELETE FROM car WHERE id = ?", id);
+    }
+
 
 }
