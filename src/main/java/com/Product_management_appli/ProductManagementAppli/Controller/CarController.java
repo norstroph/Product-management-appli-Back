@@ -1,5 +1,4 @@
 package com.Product_management_appli.ProductManagementAppli.Controller;
-
 import com.Product_management_appli.ProductManagementAppli.DAOorRepository.CarDAO;
 import com.Product_management_appli.ProductManagementAppli.dtos.CarRequestDTO;
 import com.Product_management_appli.ProductManagementAppli.entity.Car;
@@ -19,10 +18,10 @@ public class CarController {
 
     @GetMapping
     public ResponseEntity<List<CarRequestDTO>> findAllCar(){
-        List<Car> cars = carDAO.findAllCar(); // ici ça renvoie List<Car>
+        List<Car> cars = carDAO.findAllCar();
 
         List<CarRequestDTO> carDTOs = cars.stream()
-                .map(CarMapper::CarToCarDto) // mappe chaque Car en CarRequestDTO
+                .map(CarMapper::CarToCarDto)
                 .toList();
         return ResponseEntity.ok(carDTOs);
     }
@@ -41,6 +40,7 @@ public class CarController {
     }
     @GetMapping("model/{model}")
     public ResponseEntity<List<CarRequestDTO>> findCarByModel(@PathVariable String model){
+        // TODO: J ai fait comme ça mais apres commit il faut refacto et metre le dans un service66
         List<Car> cars = carDAO.findCarByModel(model);
         List<CarRequestDTO> carDTOs = cars.stream()
                 .map(CarMapper::CarToCarDto)
@@ -48,8 +48,14 @@ public class CarController {
         return ResponseEntity.ok(carDTOs);
     }
     @PostMapping
-    public Car saveCar(Car car){
-        return carDAO.saveCar(car);
+    public ResponseEntity<CarRequestDTO> saveCar( @RequestBody CarRequestDTO car){
+
+        // FIXME: J ai fait comme ça mais apres commit il faut refactor et metre le dans un service
+        Car carEntyti = CarMapper.CarDtoToCar(car);
+        Car saveCard = carDAO.saveCar(carEntyti);
+        CarRequestDTO carDTO = CarMapper.CarToCarDto(saveCard);
+        return ResponseEntity.ok(carDTO);
+
     }
     @PutMapping
     public Car updateCar(Car car){
