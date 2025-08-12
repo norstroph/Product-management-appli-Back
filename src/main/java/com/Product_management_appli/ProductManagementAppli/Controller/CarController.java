@@ -28,16 +28,24 @@ public class CarController {
     }
 
     @GetMapping("/{id}")
-    public Car findCarById(long id){
+    public Car findCarById(@PathVariable long id){
         return carDAO.findCarById(id);
     }
     @GetMapping("brand/{brand}")
-    public Car findCarByBrand(String brand){
-        return carDAO.findCarByBrand(brand);
+    public ResponseEntity<List<CarRequestDTO>> findCarByBrand(@PathVariable  String brand){
+        List<Car> cars = carDAO.findCarByBrand(brand);
+        List<CarRequestDTO> carDTOs = cars.stream()
+                .map(CarMapper::CarToCarDto)
+                .toList();
+        return ResponseEntity.ok(carDTOs);
     }
     @GetMapping("model/{model}")
-    public Car findCarByModel(String model){
-        return carDAO.findCarByModel(model);
+    public ResponseEntity<List<CarRequestDTO>> findCarByModel(@PathVariable String model){
+        List<Car> cars = carDAO.findCarByModel(model);
+        List<CarRequestDTO> carDTOs = cars.stream()
+                .map(CarMapper::CarToCarDto)
+                .toList();
+        return ResponseEntity.ok(carDTOs);
     }
     @PostMapping
     public Car saveCar(Car car){
@@ -48,7 +56,7 @@ public class CarController {
         return carDAO.updateCar(car);
     }
     @DeleteMapping("{id}")
-    public void deleteCarById(long id){
+    public void deleteCarById(@PathVariable long id){
         carDAO.deleteCarById(id);
     }
 
