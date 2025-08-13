@@ -5,6 +5,7 @@ import com.Product_management_appli.ProductManagementAppli.entity.ProductType;
 import com.Product_management_appli.ProductManagementAppli.exception.NotFoundHandlerException;
 import com.Product_management_appli.ProductManagementAppli.exception.TechnicalDatabaseException;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -74,8 +75,10 @@ public class ProductDAO {
         try {
             jdbcTemplate.update("INSERT INTO product ( name, price, stock_quantity, type) VALUES (?, ?, ?, ?)", product.getName(), product.getPrice(), product.getStockQuantity(), product.getType().name());
             return product;
+        } catch (DuplicateKeyException e) {
+            throw e; // on relance tel quel → Spring voit bien que c'est une duplication
         } catch (DataAccessException e) {
-            throw new TechnicalDatabaseException("error product: " + product.getName() +"not found or SQL error", e);
+            throw new TechnicalDatabaseException("error product: " + product.getName() + " not found or SQL error", e);
         }
     }
 

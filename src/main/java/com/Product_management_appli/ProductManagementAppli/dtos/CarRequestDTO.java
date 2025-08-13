@@ -10,7 +10,7 @@ public class CarRequestDTO {
     @NotBlank(message = "model cant be null")
     private String model;
     @NotNull(message = "price cant be null")
-    @Min(0)
+    @Min(1)
     private double price;
 
     public CarRequestDTO() {

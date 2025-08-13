@@ -1,10 +1,13 @@
 package com.Product_management_appli.ProductManagementAppli.entity;
 
+import jakarta.validation.constraints.Min;
+
 public class Car {
     private Long id;
     private String brand;
     private String model;
     private double price;
+    @Min(1)
     private int stockQuantity;
 
     public Car() {

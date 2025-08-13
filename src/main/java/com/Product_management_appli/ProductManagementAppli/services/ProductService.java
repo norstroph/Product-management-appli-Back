@@ -8,8 +8,11 @@ import com.Product_management_appli.ProductManagementAppli.entity.Car;
 import com.Product_management_appli.ProductManagementAppli.entity.Product;
 import com.Product_management_appli.ProductManagementAppli.entity.ProductType;
 import com.Product_management_appli.ProductManagementAppli.exception.NotFoundHandlerException;
+import com.Product_management_appli.ProductManagementAppli.exception.TechnicalDatabaseException;
 import com.Product_management_appli.ProductManagementAppli.mappers.ProductMapper;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +58,8 @@ public class ProductService {
         }
         return productResponseDTOS;
     }
+
+    @Transactional(noRollbackFor = { DuplicateKeyException.class, TechnicalDatabaseException.class })
     public List<Product> saveProductsWithId(List<ProductRequestDTO> products ){
         List<Product> listProduct =  new ArrayList<>();
         // faire une condition si il et pas vide alors
@@ -72,12 +77,13 @@ public class ProductService {
                             car.getStockQuantity(),
                             ProductType.CAR
                     );
-                    listProduct.add(newProduct);
-                    continue;
-                }
-                else {
-                    listProduct.add(null);
-                    continue;
+
+                    try {
+                        Product saved = productDAO.saveProduct(newProduct);
+                        listProduct.add(saved);
+                    } catch (DuplicateKeyException e) {
+                        System.out.println("Produit déjà existant : " + newProduct.getName()) ;
+                    }
                 }
 
             }

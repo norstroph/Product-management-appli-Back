@@ -88,7 +88,7 @@ public class CarDAO {
     }
 
     public Car saveCar(Car car) {
-        jdbcTemplate.update("INSERT INTO car (brand, model, price, stock_quantity) VALUES (?, ?, ?, ?)", car.getBrand(), car.getModel(), car.getPrice(), car.getStock_quantity());
+        jdbcTemplate.update("INSERT INTO car (brand, model, price, stock_quantity) VALUES (?, ?, ?, ?)", car.getBrand(), car.getModel(), car.getPrice(), car.getStockQuantity());
         return car;
     }
 
@@ -99,7 +99,7 @@ public class CarDAO {
 
         int rowsAffected = jdbcTemplate.update(
                 "UPDATE car SET brand = ?, model = ?, price = ?, stock_quantity = ? WHERE id = ?",
-                car.getBrand(), car.getModel(), car.getPrice(), car.getStock_quantity(), car.getId()
+                car.getBrand(), car.getModel(), car.getPrice(), car.getStockQuantity(), car.getId()
         );
 
         if (rowsAffected == 0) {

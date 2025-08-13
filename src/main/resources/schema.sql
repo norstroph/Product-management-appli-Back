@@ -11,9 +11,11 @@ CREATE TABLE IF NOT EXISTS product(
     name VARCHAR(255) NOT NULL,
     price DOUBLE NOT NULL,
     stock_quantity INT NOT NULL,
-    type ENUM('CAR', 'PART') NOT NULL
-);
+    type ENUM('CAR', 'PART') NOT NULL,
+    -- si doublon leve une DuplicateKeyException
+    CONSTRAINT unique_product UNIQUE (name, price, stock_quantity, type)
 
+);
 
 
 CREATE TABLE IF NOT EXISTS customers(
