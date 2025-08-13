@@ -1,21 +1,22 @@
 package com.Product_management_appli.ProductManagementAppli.entity;
 
 public class Product {
+
     private long id;
     private String name;
     private double price;
-    private int stock_quantity;
+    private int stockQuantity;
     private ProductType type;
 
 
     public Product() {
     }
-    public Product(long id, String name, double price, int stock_quantity, ProductType type) {
+    public Product(long id, String name, double price, int stockQuantity, ProductType type) {
         this.id = id;
 
         this.name = name;
         this.price = price;
-        this.stock_quantity = stock_quantity;
+        this.stockQuantity = stockQuantity;
         this.type = type;
     }
 
@@ -54,11 +55,11 @@ public class Product {
         this.type = type;
     }
 
-    public int getStock_quantity() {
-        return stock_quantity;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setStock_quantity(int stock_quantity) {
-        this.stock_quantity = stock_quantity;
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 }

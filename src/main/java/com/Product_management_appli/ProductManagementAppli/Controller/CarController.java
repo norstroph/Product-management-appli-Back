@@ -51,8 +51,6 @@ public class CarController {
     @PostMapping
     public ResponseEntity<CarRequestDTO> saveCar(@RequestBody CarRequestDTO car) {
 
-        // FIXME: J ai fait comme ça mais apres commit il faut refactor et metre le dans un service
-
         return ResponseEntity.ok(carService.saveCar(car));
 
     }

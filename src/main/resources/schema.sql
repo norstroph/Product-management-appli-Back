@@ -11,9 +11,7 @@ CREATE TABLE IF NOT EXISTS product(
     name VARCHAR(255) NOT NULL,
     price DOUBLE NOT NULL,
     stock_quantity INT NOT NULL,
-    type ENUM('CAR', 'PART') NOT NULL,
-    FOREIGN KEY (car_id) REFERENCES car(id) ON DELETE CASCADE
-
+    type ENUM('CAR', 'PART') NOT NULL
 );
 
 

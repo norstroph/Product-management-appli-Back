@@ -1,5 +1,6 @@
 package com.Product_management_appli.ProductManagementAppli.dtos;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -9,6 +10,7 @@ public class CarRequestDTO {
     @NotBlank(message = "model cant be null")
     private String model;
     @NotNull(message = "price cant be null")
+    @Min(0)
     private double price;
 
     public CarRequestDTO() {

@@ -6,15 +6,15 @@ public class ProductRequestDTO {
 
     private String name;
     private double price;
-    private int stock_quantity;
+    private int stockQuantity;
     private ProductType type;
 
     public ProductRequestDTO() {
     }
-    public ProductRequestDTO(String name, double price, int stock_quantity, ProductType type) {
+    public ProductRequestDTO(String name, double price, int stockQuantity, ProductType type) {
         this.name = name;
         this.price = price;
-        this.stock_quantity = stock_quantity;
+        this.stockQuantity = stockQuantity;
         this.type = type;
     }
 
@@ -26,12 +26,12 @@ public class ProductRequestDTO {
         this.name = name;
     }
 
-    public int getStock_quantity() {
-        return stock_quantity;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setStock_quantity(int stock_quantity) {
-        this.stock_quantity = stock_quantity;
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 
     public double getPrice() {

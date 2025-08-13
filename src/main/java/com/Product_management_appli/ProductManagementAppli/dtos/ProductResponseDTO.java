@@ -1,15 +1,26 @@
 package com.Product_management_appli.ProductManagementAppli.dtos;
 
+import com.Product_management_appli.ProductManagementAppli.entity.ProductType;
+
 public class ProductResponseDTO {
     private String name;
     private double price;
-    private int stock_quantity;
+    private int stockQuantity;
+    private ProductType type;
 
     public ProductResponseDTO() {
     }
-    public ProductResponseDTO(String name, int stock_quantity, double price) {
+
+    public ProductResponseDTO(String name, int stockQuantity, double price) {
         this.name = name;
-        this.stock_quantity = stock_quantity;
+        this.stockQuantity = stockQuantity;
+        this.price = price;
+    }
+
+    public ProductResponseDTO(String name, ProductType type, int stockQuantity, double price) {
+        this.name = name;
+        this.type = type;
+        this.stockQuantity = stockQuantity;
         this.price = price;
     }
 
@@ -29,11 +40,19 @@ public class ProductResponseDTO {
         this.price = price;
     }
 
-    public int getStock_quantity() {
-        return stock_quantity;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setStock_quantity(int stock_quantity) {
-        this.stock_quantity = stock_quantity;
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
+    public ProductType getType() {
+        return type;
+    }
+
+    public void setType(ProductType type) {
+        this.type = type;
     }
 }
