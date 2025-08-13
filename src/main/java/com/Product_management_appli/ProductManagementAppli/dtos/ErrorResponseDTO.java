@@ -7,6 +7,9 @@ public class ErrorResponseDTO {
     private String erreur;
     private String message;
 
+    public ErrorResponseDTO() {
+    }
+
     public ErrorResponseDTO(LocalDateTime timestamp, String erreur, String message) {
         this.timestamp = timestamp;
         this.erreur = erreur;

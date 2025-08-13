@@ -1,8 +1,14 @@
 package com.Product_management_appli.ProductManagementAppli.dtos;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class CarRequestDTO {
+    @NotBlank(message = "brand cant be null")
     private String brand;
+    @NotBlank(message = "model cant be null")
     private String model;
+    @NotNull(message = "price cant be null")
     private double price;
 
     public CarRequestDTO() {

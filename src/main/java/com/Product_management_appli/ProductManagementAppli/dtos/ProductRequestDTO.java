@@ -1,34 +1,22 @@
-package com.Product_management_appli.ProductManagementAppli.entity;
+package com.Product_management_appli.ProductManagementAppli.dtos;
 
-public class Product {
-    private long id;
+import com.Product_management_appli.ProductManagementAppli.entity.ProductType;
+
+public class ProductRequestDTO {
+
     private String name;
     private double price;
     private int stock_quantity;
     private ProductType type;
 
-
-    public Product() {
+    public ProductRequestDTO() {
     }
-    public Product(long id, String name, double price, int stock_quantity, ProductType type) {
-        this.id = id;
-
+    public ProductRequestDTO(String name, double price, int stock_quantity, ProductType type) {
         this.name = name;
         this.price = price;
         this.stock_quantity = stock_quantity;
         this.type = type;
     }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-
-
 
     public String getName() {
         return name;
@@ -36,6 +24,14 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getStock_quantity() {
+        return stock_quantity;
+    }
+
+    public void setStock_quantity(int stock_quantity) {
+        this.stock_quantity = stock_quantity;
     }
 
     public double getPrice() {
@@ -52,13 +48,5 @@ public class Product {
 
     public void setType(ProductType type) {
         this.type = type;
-    }
-
-    public int getStock_quantity() {
-        return stock_quantity;
-    }
-
-    public void setStock_quantity(int stock_quantity) {
-        this.stock_quantity = stock_quantity;
     }
 }
