@@ -1,27 +1,27 @@
 package com.Product_management_appli.ProductManagementAppli.entity;
 
 public class Car {
-    private long id;
+    private Long id;
     private String brand;
     private String model;
     private double price;
-    private int stock_quantity;
+    private int stockQuantity;
 
     public Car() {
     }
-    public Car(long id, String brand, String model, double price, int stock_quantity) {
+    public Car(Long id, String brand, String model, double price, int stockQuantity) {
         this.id = id;
         this.brand = brand;
         this.model = model;
         this.price = price;
-        this.stock_quantity = stock_quantity;
+        this.stockQuantity = stockQuantity;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,11 +49,11 @@ public class Car {
         this.price = price;
     }
 
-    public int getStock_quantity() {
-        return stock_quantity;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setStock_quantity(int stock_quantity) {
-        this.stock_quantity = stock_quantity;
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 }

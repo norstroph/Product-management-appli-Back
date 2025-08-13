@@ -51,6 +51,7 @@ public class ProductDAO {
         }
     }
 
+
     //je ne pance pas que se soit utille
     public List<Product> findProductByCarId(long carId) {
         try {
@@ -59,6 +60,7 @@ public class ProductDAO {
             throw new NotFoundHandlerException("error product: " + carId + " not found");
         }
     }
+    //
     public List<Product> findProductByName(String name) {
         try {
             return jdbcTemplate.query("SELECT * FROM product WHERE name = ?", productRowMapper, name);

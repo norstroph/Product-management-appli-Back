@@ -4,6 +4,7 @@ import com.Product_management_appli.ProductManagementAppli.entity.ProductType;
 
 public class ProductRequestDTO {
 
+    private long id;
     private String name;
     private double price;
     private int stockQuantity;
@@ -16,6 +17,18 @@ public class ProductRequestDTO {
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.type = type;
+    }
+
+    public ProductRequestDTO(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

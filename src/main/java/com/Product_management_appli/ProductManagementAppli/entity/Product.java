@@ -2,7 +2,7 @@ package com.Product_management_appli.ProductManagementAppli.entity;
 
 public class Product {
 
-    private long id;
+    private Long id;
     private String name;
     private double price;
     private int stockQuantity;
@@ -11,7 +11,7 @@ public class Product {
 
     public Product() {
     }
-    public Product(long id, String name, double price, int stockQuantity, ProductType type) {
+    public Product(Long id, String name, double price, int stockQuantity, ProductType type) {
         this.id = id;
 
         this.name = name;
@@ -24,7 +24,7 @@ public class Product {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

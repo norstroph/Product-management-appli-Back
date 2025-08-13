@@ -37,4 +37,12 @@ public class ProductController {
         ProductResponseDTO productResponseDTO = ProductMapper.productToProductResponseDTO(newProduct);
     return ResponseEntity.ok(productResponseDTO);
     }
+    @PostMapping("/savewithid")
+    public ResponseEntity<List<ProductResponseDTO>> saveProductsWithId(@RequestBody List<ProductRequestDTO> product){
+        List<Product> listProduct = productService.saveProductsWithId(product);
+        List<ProductResponseDTO> productResponseDTOS = productService.listOfProductToProductResponseDTO(listProduct);
+        return ResponseEntity.ok(productResponseDTOS);
+    }
+
+
 }
