@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class CustomersDAO {
     private  final JdbcTemplate jdbcTemplate;
@@ -17,6 +19,14 @@ public class CustomersDAO {
             rs.getString("email"),
             rs.getString("password")
     );
+
+    public List<Customers> findAllCustomer() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM customers", customersRowMapper);
+        }catch (Exception e) {
+            throw new RuntimeException("error customer not found or SQL error", e);
+        }
+    }
 
     public Customers findCustomerById(long id) {
         return jdbcTemplate.queryForObject("SELECT * FROM customers WHERE id = ?", customersRowMapper, id);

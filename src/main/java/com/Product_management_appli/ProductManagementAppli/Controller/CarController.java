@@ -1,6 +1,5 @@
 package com.Product_management_appli.ProductManagementAppli.Controller;
 
-import com.Product_management_appli.ProductManagementAppli.DAOorRepository.CarDAO;
 import com.Product_management_appli.ProductManagementAppli.dtos.CarRequestDTO;
 import com.Product_management_appli.ProductManagementAppli.entity.Car;
 import com.Product_management_appli.ProductManagementAppli.mappers.CarMapper;

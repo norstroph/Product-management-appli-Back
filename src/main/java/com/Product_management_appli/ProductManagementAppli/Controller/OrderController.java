@@ -15,6 +15,10 @@ import java.util.List;
 public class OrderController {
     private static OrderService orderService;
 
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
     @GetMapping
     public ResponseEntity<List<OrderResponseDTO>> findAllOrder(){
         List<Order> listOrder = orderService.findAllOrder();
