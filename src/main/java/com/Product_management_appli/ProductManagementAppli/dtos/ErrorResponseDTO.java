@@ -1,8 +1,11 @@
 package com.Product_management_appli.ProductManagementAppli.dtos;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 public class ErrorResponseDTO {
+    @NotNull
     private LocalDateTime timestamp;
     private String erreur;
     private String message;

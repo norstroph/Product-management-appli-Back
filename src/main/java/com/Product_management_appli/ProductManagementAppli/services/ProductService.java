@@ -60,8 +60,8 @@ public class ProductService {
     }
 
     @Transactional(noRollbackFor = { DuplicateKeyException.class, TechnicalDatabaseException.class })
-    public List<Product> saveProductsWithId(List<ProductRequestDTO> products ){
-        List<Product> listProduct =  new ArrayList<>();
+    public List< ProductResponseDTO> saveProductsWithId(List<ProductRequestDTO> products ){
+        List< ProductResponseDTO> listProduct =  new ArrayList<>();
         // faire une condition si il et pas vide alors
         if(products != null) {
             // si il est pas vide il faut passer sur chaque element
@@ -80,9 +80,10 @@ public class ProductService {
 
                     try {
                         Product saved = productDAO.saveProduct(newProduct);
-                        listProduct.add(saved);
+                        listProduct.add(new ProductResponseDTO(saved.getId(), saved.getName(), "Ajouté avec succès"));
                     } catch (DuplicateKeyException e) {
-                        System.out.println("Produit déjà existant : " + newProduct.getName()) ;
+                        listProduct.add(new ProductResponseDTO(product.getId(), null, "Déjà existant"));
+
                     }
                 }
 

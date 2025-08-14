@@ -1,6 +1,7 @@
 package com.Product_management_appli.ProductManagementAppli.entity;
 
 public class Customers {
+
     private long id;
     private String email;
     private String password;

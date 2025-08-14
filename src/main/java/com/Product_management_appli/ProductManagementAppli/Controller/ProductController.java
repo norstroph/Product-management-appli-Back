@@ -24,6 +24,8 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<ProductResponseDTO>> findAllProduct(){
             List<Product> product = productService.findAllProduct();
+
+            //je sais pas si le map "productDTOs " c est dans le mapper ou pas normalement oui mais pas sur
         List<ProductResponseDTO> productDTOs = product.stream()
                 .map(ProductMapper::productToProductResponseDTO)
                 .toList();
@@ -39,9 +41,8 @@ public class ProductController {
     }
     @PostMapping("/savewithid")
     public ResponseEntity<List<ProductResponseDTO>> saveProductsWithId(@RequestBody List<ProductRequestDTO> product){
-        List<Product> listProduct = productService.saveProductsWithId(product);
-        List<ProductResponseDTO> productResponseDTOS = productService.listOfProductToProductResponseDTO(listProduct);
-        return ResponseEntity.ok(productResponseDTOS);
+        List< ProductResponseDTO> listProduct = productService.saveProductsWithId(product);
+        return ResponseEntity.ok(listProduct);
     }
 
 
